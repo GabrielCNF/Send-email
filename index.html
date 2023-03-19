@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    form{
+      display:flex;
+      flex-direction: column;
+      width:100%
+    }
+    form input, form textarea, form button{
+       padding: 20px;
+      margin-bottom:28px;
+       outline: none;
+      border:none;
+      background-color:#ddd;
+    }
+    form button{
+
+        background-color: #333;
+        cursor:pointer;
+    }
+</style>
+<body>
+    <form class="contact_form" action="#" onsubmit="SendEmail(event)">
+        <table>
+          <tr>
+            <td>
+                <input id="email" class="email" style="width: 300px;" type= "email" placeholder="Email" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+                <input id="name" class="name" style="width: 300px;" type= "text" placeholder= "Subject Name" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+                <textarea id="message" class="message" style="width: 1000px; height: 300px;" cols="12" rows="5" placeholder= "Your message..."></textarea>
+            </td>
+          </tr>  
+          <button type="submit">Send</button>
+        </table>
+    </form>
+
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+    <script>
+        const form = document.getElementById('contact_form'),
+        subject = document.getElementById('name'),
+        email = document.getElementById('email'),
+        message = document.getElementById('message');
+
+        console.log(email.value);
+        console.log(name.value);
+        console.log(message.value);
+        console.log(form.value);
+        
+    //emailsent
+    function SendEmail(e){
+        e.preventDefault();
+
+        Email.send({
+        Host : 'smtp.elasticemail.com',
+        Username : 'devtester0108@outlook.com',
+        Password : '8F88B9A05ABC37FA3A8EE8814E0D6834F575',
+        To : 'gabrielcantonf@gmail.com',
+        From : email.value,
+        Subject : subject.value,
+        Body : message.value
+        }).then(
+            message => alert(message)
+        );
+
+        
+        return true;
+    }
+        
+    </script>
+</body>
+</html>
